@@ -23,8 +23,10 @@ A macOS app for RSA key management, file and folder encryption/decryption, built
 
 - macOS 14.0 (Sonoma) 或更高版本 / macOS 14.0 (Sonoma) or later
 - Apple Silicon (M 系列) 或 Intel Mac / Apple Silicon (M-series) or Intel Mac
-- 需要安装 RSA-Sakura 命令行工具（`sigd`、`sige`、`xrsaoapp.sw`、`sxrsa.sw`、`dxrsa.sw`、`ezip`、`eunzip` 等）
-  - Requires the RSA-Sakura command-line tools (`sigd`, `sige`, `xrsaoapp.sw`, `sxrsa.sw`, `dxrsa.sw`, `ezip`, `eunzip`, etc.)
+- 需要先安装 RSA-Sakura 核心包，提供 `sigd`、`sige`、`xrsaoapp.sw`、`sxrsa.sw`、`dxrsa.sw`、`ezip`、`eunzip` 等命令
+  - 下载地址 / Download: https://github.com/derekfugh/RSA-Sakura
+- Requires the RSA-Sakura core package (`sigd`, `sige`, `xrsaoapp.sw`, `sxrsa.sw`, `dxrsa.sw`, `ezip`, `eunzip`, etc.)
+  - Download: https://github.com/derekfugh/RSA-Sakura
 
 ---
 
@@ -146,6 +148,15 @@ No license has been specified yet. Please contact the author before using, modif
 
 - 提交 Issue：[GitHub Issues](https://github.com/derekfugh/RSA-Sakura-Driver/issues)
 - 提交 Pull Request 欢迎 / Pull requests are welcome.
+
+---
+
+## 相关项目 Related Projects
+
+- **RSA-Sakura**：本应用依赖的核心命令行工具包（`sigd`、`sige`、`xrsaoapp.sw`、`sxrsa.sw`、`dxrsa.sw`、`ezip`、`eunzip` 等）
+  - https://github.com/derekfugh/RSA-Sakura
+- **RSA-Sakura Driver**：本应用，macOS GUI 前端
+  - https://github.com/derekfugh/RSA-Sakura-Driver
 
 ---
 

@@ -869,8 +869,8 @@ struct FolderView: View {
                 .font(.headline)
                 // .frame(maxWidth: .infinity)
                 
-                Button("校验工具 SMX Tools") {
-                    openTerminalAndRun("dcp; ssmx; dsmx")
+                Button("校验工具 SMX") {
+                    openTerminalAndRun("dcp; ssmx; dsmx; smx-configure")
                 }
             }
             .frame(maxWidth: .infinity)

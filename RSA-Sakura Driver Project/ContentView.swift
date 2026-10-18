@@ -28,7 +28,7 @@ struct ContentView: View {
             }
         }
         .frame(width: 421, height: 218)
-        .navigationTitle("RSA-Sakura")
+        // .navigationTitle("RSA-Sakura")
         .toolbar {
             // 右上角下拉框
             ToolbarItem(placement: .primaryAction) {

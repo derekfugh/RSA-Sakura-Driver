@@ -4,7 +4,7 @@ import SwiftUI
     @StateObject private var paths = AppPaths.shared
     
     var body: some Scene {
-        WindowGroup {
+        WindowGroup("RSA-Sakura") {
             ContentView()
                 .task {
                     paths.discover()

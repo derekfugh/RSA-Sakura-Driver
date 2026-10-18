@@ -307,8 +307,8 @@ struct SettingsView: View {
                 outerTargeted = false
             }
         }
-        .alert("无法处理", isPresented: $showError) {
-            Button("确定", role: .cancel) { }
+        .alert("无法处理 / Unable to Process", isPresented: $showError) {
+            Button("确定 / OK", role: .cancel) { }
         } message: {
             Text(errorMessage)
         }
@@ -381,7 +381,7 @@ struct SettingsView: View {
         // 3. 必须是文件，不能是目录
         let isDirectory = (try? first.resourceValues(forKeys: [.isDirectoryKey]).isDirectory) == true
         if isDirectory {
-            errorMessage = "只接受文件，不接受目录。请拖入单个文件。"
+            errorMessage = "只接受文件，不接受目录。请拖入单个文件。\nOnly files are accepted, not folders. Please drop a single file."
             showError = true
             return false
         }
@@ -407,14 +407,14 @@ struct KeysView: View {
         // 1. 名称校验
         let name = keyName.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !name.isEmpty else {
-            errorMessage = "请先填写密钥名称。Please enter a key name."
+            errorMessage = "请先填写密钥名称。\nPlease enter a key name."
             showError = true
             return
         }
 
         // 2. 主目录校验
         guard let root = AppPaths.shared.sharewareRoot?.path else {
-            errorMessage = "未找到 RSA-Sakura 主目录。请确认程序已正确安装。"
+            errorMessage = "未找到 RSA-Sakura 主目录。请确认程序已正确安装。\nRSA-Sakura root directory not found. Please make sure the app is installed correctly."
             showError = true
             return
         }
@@ -620,8 +620,8 @@ struct KeysView: View {
             if eBits < 0 { eBits = 0 }
         }
         */
-        .alert("无法生成密钥", isPresented: $showError) {
-            Button("确定", role: .cancel) { }
+        .alert("无法生成密钥 / Unable to Generate Key", isPresented: $showError) {
+            Button("确定 / OK", role: .cancel) { }
         } message: {
             Text(errorMessage)
         }
@@ -732,8 +732,8 @@ struct FilesView: View {
             }
         }
         // 弹框
-        .alert("无法处理", isPresented: $showError) {
-            Button("确定", role: .cancel) { }
+        .alert("无法处理 / Unable to Process", isPresented: $showError) {
+            Button("确定 / OK", role: .cancel) { }
         } message: {
             Text(errorMessage)
         }
@@ -777,7 +777,7 @@ struct FilesView: View {
         }
 
         if hasDirectory {
-            errorMessage = "检测到目录。这里只接受文件，请把目录拖到“目录”标签页处理。"
+            errorMessage = "检测到目录。这里只接受文件，请把目录拖到“目录”标签页处理。\nFolder detected. Only files are accepted here. Please drop folders in the Folder tab."
             showError = true
             return   // 不作进一步处理
         }
@@ -785,7 +785,7 @@ struct FilesView: View {
         // 2. 密钥校验
         let key = selectedKeyID.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !key.isEmpty else {
-            errorMessage = "请先选择一个密钥。"
+            errorMessage = "请先选择一个密钥。\nPlease select a key first."
             showError = true
             return
         }
@@ -954,8 +954,8 @@ struct FolderView: View {
         }
         //*/
         // 👇 弹框
-        .alert("无法处理", isPresented: $showError) {
-            Button("确定", role: .cancel) { }
+        .alert("无法处理 / Unable to Process", isPresented: $showError) {
+            Button("确定 / OK", role: .cancel) { }
         } message: {
             Text(errorMessage)
         }
@@ -1053,7 +1053,7 @@ struct FolderView: View {
         }
 
         if hasFile {
-            errorMessage = "检测到文件。这里只接受目录，请把文件拖到“文件”标签页处理。"
+            errorMessage = "检测到文件。这里只接受目录，请把文件拖到“文件”标签页处理。\nFile detected. Only folders are accepted here. Please drop files in the Files tab."
             showError = true
             return   // 不作进一步处理
         }
@@ -1061,7 +1061,7 @@ struct FolderView: View {
         // 2. 密钥校验
         let key = selectedKeyID.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !key.isEmpty else {
-            errorMessage = "请先选择一个密钥。"
+            errorMessage = "请先选择一个密钥。\nPlease select a key first."
             showError = true
             return
         }
@@ -1069,7 +1069,7 @@ struct FolderView: View {
         // 3. 文件类型校验
         let fileType = inputValue.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !fileType.isEmpty else {
-            errorMessage = "请先在“输入”里填写文件类型，例如 \"*.c\" \"*.h\"。"
+            errorMessage = "请先在“输入”里填写文件类型，例如 \"*.c\" \"*.h\"。\nPlease enter the file type in the Input field, e.g. \"*.c\" \"*.h\"."
             showError = true
             return
         }

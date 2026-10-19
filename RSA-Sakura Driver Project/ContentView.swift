@@ -636,6 +636,7 @@ struct FilesView: View {
     @AppStorage("selectedKeyID") private var selectedKeyID: String = ""
     @AppStorage("filesView.overwrite") private var overwrite: Bool = false
     @AppStorage("filesView.recover") private var recover: Bool = false
+    @AppStorage("filesView.reSign") private var reSign: Bool = false
 
     // 弹框状态
     @State private var showError = false
@@ -659,29 +660,42 @@ struct FilesView: View {
             }
             .frame(maxWidth: .infinity)
             
-            HStack(spacing: 48) {
-                Toggle("自动覆盖 Overwrite", isOn: $overwrite)
+            HStack(spacing: 12) {
+                Toggle("自动覆写 Overwrite", isOn: $overwrite)
                         .toggleStyle(.checkbox)
-                HStack(spacing: 8) {
-                    KeychainIconButton(helpText: "重建钥匙串 Rebuild Keychain", showBorder: true) {
-                        var cmd = "npeminicp; xrsaoapp.sw"
-                        if recover {
-                            cmd="\(cmd) -x\(selectedKeyID)"
-                        }
-                        openTerminalAndRun(cmd)
-                    }
-                    Toggle("+ 恢复 Recover", isOn: $recover)
-                        .toggleStyle(.checkbox)
+                Button("多核/多线程 Multi-core/Threading") {
+                    openTerminalAndRun("xcompensate")
                 }
+                .font(.headline)
+                //.frame(maxWidth: .infinity)
+                .padding(0)
             }
             .frame(maxWidth: .infinity)
             
-            Button("多核/多线程设置 Multi-[core/threaded] setting") {
-                openTerminalAndRun("xcompensate")
+            HStack(spacing: 12) {
+                Text("密钥:")
+                    .foregroundStyle(.secondary)
+                Toggle("+ 更签 re-sign", isOn: $reSign)
+                    .toggleStyle(.checkbox)
+                Toggle("+ 恢复 Recover", isOn: $recover)
+                    .toggleStyle(.checkbox)
+                KeychainIconButton(helpText: "重建钥匙串 Rebuild Keychain", showBorder: true) {
+                    var cmd = "npeminicp; xrsaoapp.sw"
+                    if reSign {
+                        // TODO: 更签对应的命令参数，等你确认
+                        cmd = "sigx \(selectedKeyID)"
+                    } else if recover {
+                        cmd = "xrsaoapp.sw -x\(selectedKeyID)"
+                    }
+                    openTerminalAndRun(cmd)
+                }
             }
-            .font(.headline)
-            .frame(maxWidth: .infinity)
-            .padding(0)
+            .onChange(of: reSign) { _, newValue in
+                if newValue { recover = false }
+            }
+            .onChange(of: recover) { _, newValue in
+                if newValue { reSign = false }
+            }
             
             /*
             HStack() {
@@ -694,7 +708,7 @@ struct FilesView: View {
             .frame(maxWidth: .infinity)
             */
             HStack(spacing: 21) {
-                Text("密码本: ")
+                Text("密码本:")
                     .foregroundStyle(.secondary)
                 Button("提取密钥 rsa-keeper") {
                     openTerminalAndRun("rsa-keeper")
@@ -848,7 +862,7 @@ struct FolderView: View {
             HStack(spacing: 21) {
                 Toggle("遍历目录 Recursive", isOn: $recursive)
                     .toggleStyle(.checkbox)
-                Toggle("自动覆盖 Overwrite", isOn: $overwrite)
+                Toggle("自动覆写 Overwrite", isOn: $overwrite)
                     .toggleStyle(.checkbox)
                 KeychainIconButton(helpText: "重建钥匙串 Rebuild Keychain", showBorder: true) {
                     let cmd = "npeminicp; xrsaoapp.sw"

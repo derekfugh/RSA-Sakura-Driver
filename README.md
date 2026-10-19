@@ -12,8 +12,8 @@ A macOS app for RSA key management, file and folder encryption/decryption, built
   - License status detection, drag-and-drop unlock/lock, raw output viewer, destroy keychain & signature.
 - **密钥 Keys**：生成 RSA 密钥对，可设置密钥名、位数、p&q 位差、公钥位数 e bits、快速模式；重建钥匙串。
   - Generate RSA key pairs with configurable name, bits, p&q difference, e bits, and fast mode; rebuild keychain.
-- **文件 Files**：拖拽文件到上半区加密、下半区解密；支持自动覆盖、恢复、多核/多线程设置、密码本提取密钥。
-  - Drag files to the top half to encrypt, bottom half to decrypt; supports overwrite, recover, multi-core/threaded settings, and key extraction.
+- **文件 Files**：拖拽文件到上半区加密、下半区解密；支持自动覆盖、更签、恢复、多核/多线程设置、密码本提取密钥。
+  - Drag files to the top half to encrypt, bottom half to decrypt; supports overwrite, re-sign, recover, multi-core/threaded settings, and key extraction.
 - **目录 Folder**：拖拽目录到四象限分别执行加密、压缩、解密、解压；支持递归遍历、自动覆盖、文件类型过滤。
   - Drag folders into four quadrants to encrypt, zip, decrypt, or unzip; supports recursive traversal, overwrite, and file type filtering.
 

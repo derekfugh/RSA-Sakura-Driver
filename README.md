@@ -86,7 +86,7 @@ After launching, use the dropdown menu in the top-right corner to switch between
 |---|---|
 | 授权 Signature | 检测授权状态，拖入文件解锁/锁定 / Check license status, drag files to unlock/lock |
 | 密钥 Keys | 生成密钥对、重建钥匙串 / Generate key pairs, rebuild keychain |
-| 文件 Files | 拖拽文件加密/解密 / Drag files to encrypt/decrypt |
+| 文件 Files | 拖拽文件加密/解密，支持更签与恢复 / Drag files to encrypt/decrypt, with re-sign and recover support |
 | 目录 Folder | 拖拽目录加密/压缩/解密/解压 / Drag folders to encrypt/zip/decrypt/unzip |
 
 ### 拖拽操作说明 Drag-and-Drop Guide

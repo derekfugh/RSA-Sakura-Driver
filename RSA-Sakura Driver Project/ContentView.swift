@@ -76,7 +76,7 @@ struct KeyPicker: View {
                     .font(.caption)
                     .lineLimit(1)
             } else if loader.keys.isEmpty {
-                Text("没有可用密钥")
+                Text("没有可用密钥 / No keys available")
                     .foregroundStyle(.yellow)
                     .font(.caption)
             } else {
@@ -96,7 +96,7 @@ struct KeyPicker: View {
                 Image(systemName: "arrow.clockwise")
             }
             .buttonStyle(.borderless)
-            .help("刷新密钥列表")
+            .help("刷新密钥列表 Refresh")
         }
         .onAppear {
             if loader.keys.isEmpty {
@@ -683,9 +683,13 @@ struct FilesView: View {
             HStack(spacing: 12) {
                 Text("密钥:")
                     .foregroundStyle(.secondary)
-                Toggle("+ 更签 re-sign", isOn: $reSign)
+                Toggle("更签 re-sign", isOn: $reSign)
+                    //.foregroundStyle(.pink)
+                    .foregroundStyle(.pink.opacity(reSign ? 1.0 : 0.48))
                     .toggleStyle(.checkbox)
-                Toggle("+ 恢复 Recover", isOn: $recover)
+                Toggle("恢复 Recover", isOn: $recover)
+                    //.foregroundStyle(.green)
+                    .foregroundStyle(.green.opacity(recover ? 1.0 : 0.48))
                     .toggleStyle(.checkbox)
                 KeychainIconButton(helpText: "重建钥匙串 Rebuild Keychain", showBorder: true) {
                     var cmd = "npeminicp; xrsaoapp.sw"
@@ -892,7 +896,7 @@ struct FolderView: View {
                 // .frame(maxWidth: .infinity)
                 
                 Button("校验工具 SMX") {
-                    openTerminalAndRun("dcp; ssmx; dsmx; smx-configure")
+                    openTerminalAndRun("dcp; ssmx; dsmx; smx-configure 0")
                 }
             }
             .frame(maxWidth: .infinity)

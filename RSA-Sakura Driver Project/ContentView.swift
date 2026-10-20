@@ -235,6 +235,7 @@ struct SettingsView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             HStack(spacing: 8) {
+                Text("🌸")
                 Text("授权状态 / License Status : ")
                     .foregroundStyle(.secondary)
 

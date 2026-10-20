@@ -170,11 +170,19 @@ struct KeychainIconButton: View {
         self.action = action
     }
     
+    private func loadKeychainIcon() -> NSImage {
+        if let url = Bundle.main.url(forResource: "Keychain", withExtension: "icns"),
+           let img = NSImage(contentsOf: url) {
+            return img
+        }
+        return NSApp.applicationIconImage
+    }
     var body: some View {
         Button {
             action()
         } label: {
-            Image(nsImage: NSImage(named: "Keychain") ?? NSApp.applicationIconImage)
+            // Image(nsImage: NSImage(named: "Keychain.icns") ?? NSApp.applicationIconImage)
+            Image(nsImage: loadKeychainIcon())
                 .resizable()
                 .frame(width: 32, height: 32)
                 .opacity(isHovering ? 1.0 : 0.85)         // 悬停变亮

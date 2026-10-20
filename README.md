@@ -160,5 +160,5 @@ No license has been specified yet. Please contact the author before using, modif
 
 ---
 
-**免责声明 Disclaimer**：本工具仅用于合法的个人数据加解密与密钥管理。请遵守当地法律法规。
-This tool is intended for lawful personal data encryption/decryption and key management only. Please comply with local laws and regulations.
+**免责声明 Disclaimer**：本工具仅用于合法数据的加解密与密钥管理。请遵守当地法律法规。
+This tool is intended for lawful data encryption/decryption and key management only. Please comply with local laws and regulations.

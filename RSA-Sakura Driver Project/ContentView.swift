@@ -225,7 +225,7 @@ struct SettingsView: View {
     @State private var outerTargeted = false
     @State private var isTargetingUnlock = false
     private var isDragging: Bool {
-        outerTargeted || isTargetingUnlock
+        canDropForUnlock && (outerTargeted || isTargetingUnlock)
     }
     /// 只有已锁定状态才允许拖入
     private var canDropForUnlock: Bool {
@@ -329,10 +329,12 @@ struct SettingsView: View {
             }
         }
         .overlay {
-            if isDragging {
+            //if isDragging {
                 unlockOverlay
-                    .transition(.opacity)
-            }
+                    //.transition(.opacity)
+                    .opacity(isDragging ? 1 : 0)
+                    .allowsHitTesting(isDragging)
+            //}
         }
         .animation(.easeInOut(duration: 0.2), value: isDragging)
     }
@@ -370,11 +372,14 @@ struct SettingsView: View {
         ) { urls in
             _ = handleUnlockDrop(urls)
         } isTargeted: { targeted in
-            isTargetingUnlock = targeted
+            if canDropForUnlock {
+                isTargetingUnlock = targeted
+            }
         }
         .padding(12)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(.background)
+        .contentShape(Rectangle())
     }
     private func handleUnlockDrop(_ urls: [URL]) -> Bool {
         // 1. 状态校验：只有已锁定才允许
@@ -710,16 +715,6 @@ struct FilesView: View {
                 if newValue { reSign = false }
             }
             
-            /*
-            HStack() {
-                Button("密码本: 提取密钥 rsa-keeper") {
-                    openTerminalAndRun("rsa-keeper")
-                }
-                .font(.headline)
-                .frame(maxWidth: .infinity)
-            }
-            .frame(maxWidth: .infinity)
-            */
             HStack(spacing: 21) {
                 Text("密码本:")
                     .foregroundStyle(.secondary)
@@ -753,10 +748,13 @@ struct FilesView: View {
         }
         // 👇 拖拽时覆盖整个窗口
         .overlay {
-            if isDragging {
+            // if isDragging {
+            // 不要用 if isDragging 包裹，让它一直在视图树里
                 dragOverlay
-                    .transition(.opacity)
-            }
+                    //.transition(.opacity)
+                    .opacity(isDragging ? 1 : 0)           // 根据状态显示/隐藏
+                    .allowsHitTesting(isDragging)          // 只有显示时才拦截鼠标事件
+            // }
         }
         // 弹框
         .alert("无法处理 / Unable to Process", isPresented: $showError) {
@@ -777,9 +775,10 @@ struct FilesView: View {
             } isTargeted: { targeted in
                 isTargetingEncrypt = targeted
             }
+            .padding(12)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
 
-            Divider()
+            //Divider()
 
             DropZoneLabel(
                 text: "解密文件",
@@ -790,10 +789,12 @@ struct FilesView: View {
             } isTargeted: { targeted in
                 isTargetingDecrypt = targeted
             }
+            .padding(12)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(.background)   // 盖住下层内容
+        .contentShape(Rectangle())
     }
     
     /// 统一处理拖入的 URL：只接受文件，含目录则拦截
@@ -974,10 +975,12 @@ struct FolderView: View {
         // 👇 拖拽时覆盖整个窗口
         //*
         .overlay {
-            if isDragging {
+            //if isDragging {
                 dragOverlay
-                    .transition(.opacity)
-            }
+                    //.transition(.opacity)
+                    .opacity(isDragging ? 1 : 0)
+                    .allowsHitTesting(isDragging)
+            //}
         }
         //*/
         // 👇 弹框
@@ -991,18 +994,6 @@ struct FolderView: View {
     //*
     private var dragOverlay: some View {
         VStack(spacing: 0) {
-            /*
-            DropZoneLabel(
-                text: "加密 / 压缩",
-                subtitle: "Encrypt / Zip",
-                isHighlighted: isTargetingEncrypt
-            ) { urls in
-                handleFolders(urls, action: zipunzip ? "压缩" : "加密")
-            } isTargeted: { targeted in
-                isTargetingEncrypt = targeted
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            */
             HStack(spacing: 0) {
                 DropZoneLabel(
                     text: "加密",
@@ -1029,19 +1020,6 @@ struct FolderView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
 
-            /*
-            Divider()
-            DropZoneLabel(
-                text: "解密 / 解压",
-                subtitle: "Decrypt / Unzip",
-                isHighlighted: isTargetingDecrypt
-            ) { urls in
-                handleFolders(urls, action: zipunzip ? "解压" : "解密")
-            } isTargeted: { targeted in
-                isTargetingDecrypt = targeted
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            */
             HStack(spacing: 0) {
                 DropZoneLabel(
                     text: "解密",
@@ -1070,6 +1048,7 @@ struct FolderView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(.background)   // 盖住下层内容
+        .contentShape(Rectangle())
     }
     //*/
     /// 统一处理拖入的 URL：只接受目录，含文件则拦截

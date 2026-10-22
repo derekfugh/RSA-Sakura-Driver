@@ -1081,7 +1081,7 @@ struct FolderView: View {
         }
         
         // 4. 每个目录一条命令
-        let recursiveFlag = recursive ? "--recursive " : "--non-recursive "
+        let recursiveFlag = recursive ? "--recursive " : ""
         let overwriteFlag = overwrite ? "--overwrite " : ""
         let flag: String
         let rsa_zip_cmd: String

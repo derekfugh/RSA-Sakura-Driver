@@ -4,6 +4,7 @@
 
 A macOS app for RSA key management, file and folder encryption/decryption, built with SwiftUI and drag-and-drop support.
 
+![演示](https://your-image-host.com/demo.gif](https://github.com/user-attachments/assets/58630771-b5db-4df6-9fe4-10a0a034c515)
 ---
 
 ## 功能 Features

@@ -7,6 +7,7 @@ A macOS app for RSA key management, file and folder encryption/decryption, built
 <p align="center">
   <img src="https://github.com/user-attachments/assets/58630771-b5db-4df6-9fe4-10a0a034c515" width="100%" alt="樱花加密器">
 </p>
+
 ---
 
 ## 功能 Features

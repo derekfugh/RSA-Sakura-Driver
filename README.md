@@ -5,7 +5,7 @@
 A macOS app for RSA key management, file and folder encryption/decryption, built with SwiftUI and drag-and-drop support.
 
 <p align="center">
-  <img src="https://cdn.jsdelivr.net/gh/derekfugh/RSA-Sakura-Driver@main/images/sakura_2026-10-22_15.35.38.png" width="100%" alt="樱花加密器">
+  <img src="images/sakura_2026-10-22_15.35.38.png" width="100%" alt="樱花加密器">
 </p>
 
 ---
